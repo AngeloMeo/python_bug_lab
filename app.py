@@ -91,8 +91,8 @@ def count_vowels(text: str) -> int:
     Expected: count_vowels("umbrella") -> 3
     """
     # BUG: Missing 'u' in vowels
-    vowels = "aeioAEIO"
-    return sum(1 for char in text if char in vowels)
+    vowels = "aeiou"
+    return sum(1 for char in text.lower() if char in vowels)
 
 
 def truncate_text(text: str, max_len: int) -> str:
