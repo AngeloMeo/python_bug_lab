@@ -28,9 +28,9 @@ def clamp_number(value: float, min_val: float, max_val: float) -> float:
     """
     # BUG: Inverted boundary checks
     if value < min_val:
-        return max_val
-    elif value > max_val:
         return min_val
+    elif value > max_val:
+        return max_val
     return value
 
 
@@ -42,7 +42,7 @@ def discount_price(price: float, discount_percent: float) -> float:
     """
     # BUG: Computes discount amount, forgets to subtract from price
     discount_amount = price * (discount_percent / 100.0)
-    return discount_amount
+    return price-discount_amount
 
 
 def find_max_number(numbers: list) -> int:
@@ -52,7 +52,7 @@ def find_max_number(numbers: list) -> int:
     Expected: find_max_number([-10, -5, -20]) -> -5
     """
     # BUG: Initializing to 0 fails for all-negative lists
-    current_max = 0
+    current_max = numbers[0]
     for n in numbers:
         if n > current_max:
             current_max = n
@@ -66,7 +66,7 @@ def calculate_bmi(weight_kg: float, height_m: float) -> float:
     Expected: calculate_bmi(70, 1.75) -> ~22.86
     """
     # BUG: Missing height squared
-    return round(weight_kg / height_m, 2)
+    return round(weight_kg / (height_m*height_m), 2)
 
 
 # =====================================================================
@@ -80,7 +80,7 @@ def is_palindrome(text: str) -> bool:
     Expected: Case-insensitive check (e.g. "Racecar" -> True).
     """
     # BUG: Compares without lowercasing
-    cleaned = text.replace(" ", "")
+    cleaned = (text.replace(" ", "")).lower()
     return cleaned == cleaned[::-1]
 
 
@@ -91,8 +91,8 @@ def count_vowels(text: str) -> int:
     Expected: count_vowels("umbrella") -> 3
     """
     # BUG: Missing 'u' in vowels
-    vowels = "aeioAEIO"
-    return sum(1 for char in text if char in vowels)
+    vowels = "aeiou"
+    return sum(1 for char in text.lower() if char in vowels)
 
 
 def truncate_text(text: str, max_len: int) -> str:
