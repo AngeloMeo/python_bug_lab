@@ -104,7 +104,7 @@ def truncate_text(text: str, max_len: int) -> str:
     if len(text) <= max_len:
         return text
     # BUG: Takes max_len characters THEN appends 3 dots (exceeding max_len)
-    return text[:max_len] + "..."
+    return text[:max_len-3]+"..."
 
 
 def reverse_words(sentence: str) -> str:
@@ -114,7 +114,10 @@ def reverse_words(sentence: str) -> str:
     Expected: reverse_words("Hello World") -> "World Hello"
     """
     # BUG: Reverses character stream instead of words
-    return sentence[::-1]
+    word = sentence.split()
+    return " ".join(word[::-1])
+
+
 
 
 def get_file_extension(filename: str) -> str:
